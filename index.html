@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Navegadores do Destino - RPG Histórico</title>
+  <link rel="stylesheet" href="css.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=MedievalSharp&family=Press+Start+2P&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- TELA INICIAL / MENU PRINCIPAL -->
+  <div id="start-screen" class="modal-overlay">
+    <div class="modal-box text-center">
+      <div class="badge-tag">RPG EDUCATIVO • ENSINO MÉDIO & ENEM</div>
+      <h1 class="game-title">NAVEGADORES DO DESTINO</h1>
+      <h2 class="game-subtitle">As Grandes Navegações (Séculos XV e XVI)</h2>
+      
+      <p class="game-desc">
+        Navegue pelo Atlântico e Índico, explore marcos históricos, converse com navegadores, realize missões educativas e domine o conteúdo para sua prova de História!
+      </p>
+
+      <div class="menu-buttons">
+        <button id="btn-start-new" class="btn btn-amber">⛵ NOVA EXPEDIÇÃO</button>
+        <button id="btn-continue" class="btn btn-emerald hidden">📜 CONTINUAR JOGO</button>
+      </div>
+
+      <div class="menu-footer">
+        <span>🎮 Controles: WASD / Setas • Botões na tela (Celular)</span>
+        <button id="btn-reset-data" class="btn-text-danger">Limpar Salvamento</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTAINER DO JOGO (CANVAS 2D) -->
+  <div id="game-container">
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- BARRA SUPERIOR (HUD) -->
+    <header class="hud-header">
+      <div class="hud-status">
+        <div class="status-pill">👑 <span id="player-title">Grumete</span></div>
+        <div class="status-pill">🟡 <span id="player-ducats">50</span></div>
+        <div class="status-pill">⭐ <span id="player-xp">0</span> XP</div>
+      </div>
+
+      <div class="hud-center-info hidden md-block">
+        <div id="current-location-name" class="loc-name">Oceano Atlântico</div>
+        <div id="weather-time-info" class="time-info">Dia 1 • Vento Favorável</div>
+      </div>
+
+      <nav class="hud-nav">
+        <button id="btn-open-shop" class="btn btn-amber">🛒 Loja de Especiarias</button>
+        <button id="btn-toggle-audio" class="hud-btn">🔊 Áudio</button>
+        <button id="btn-open-quests" class="hud-btn">📜 Missões</button>
+        <button id="btn-open-library" class="hud-btn">📚 Teoria</button>
+        <button id="btn-open-tools" class="hud-btn">✏️ Estudar</button>
+        <button id="btn-open-simulado" class="hud-btn btn-danger-hud">✍️ Simulado</button>
+      </nav>
+    </header>
+
+    <!-- PAINEL DA MISSÃO ATIVA -->
+    <div id="active-quest-hud" class="active-quest-card">
+      <div class="quest-header-flex">
+        <span class="quest-tag">MISSÃO ATIVA</span>
+        <span id="quest-progress-tag" class="quest-count">1/10</span>
+      </div>
+      <h3 id="active-quest-title" class="quest-title-text">Carregando missão...</h3>
+      <p id="active-quest-desc" class="quest-desc-text">Aproxime seu navio do ponto de interesse no mapa.</p>
+    </div>
+
+    <!-- BÚSSOLA E COORDENADAS -->
+    <div class="compass-box">
+      <div class="compass-circle">N</div>
+      <div class="compass-texts">
+        <div id="speed-indicator">Velocidade: 0 nós</div>
+        <div id="coords-indicator">Lat: 38°N | Long: 9°W</div>
+      </div>
+    </div>
+
+    <!-- CONTROLES VIRTUAIS (MOBILE) -->
+    <div id="touch-controls" class="touch-grid">
+      <div></div>
+      <button id="btn-touch-up" class="touch-btn">▲</button>
+      <div></div>
+      <button id="btn-touch-left" class="touch-btn">◄</button>
+      <button id="btn-touch-down" class="touch-btn">▼</button>
+      <button id="btn-touch-right" class="touch-btn">►</button>
+    </div>
+  </div>
+
+  <!-- MODAL GERAL (DIÁLOGOS, QUIZ, BIBLIOTECA) -->
+  <div id="modal-overlay" class="modal-overlay hidden">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h2 id="modal-title" class="modal-title-text">Título</h2>
+        <button id="btn-close-modal" class="modal-close-btn">✕</button>
+      </div>
+      <div id="modal-body" class="modal-body-content">
+        <!-- Conteúdo dinâmico via JS -->
+      </div>
+      <div id="modal-footer" class="modal-footer-content">
+        <button class="btn btn-amber" onclick="closeModal()">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js.js"></script>
+</body>
+</html>
