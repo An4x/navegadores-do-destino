@@ -9,6 +9,8 @@ const AUDIO_CONFIG = {
   wrongSfxPath: 'audio/erro.mp3'
 };
 
+
+
 class SoundSystem {
   constructor() {
     this.ctx = null;
@@ -318,6 +320,21 @@ const FLASHCARDS = [
 
 let canvas, ctx;
 
+document.addEventListener("DOMContentLoaded", () => {
+  const canvas = document.getElementById('gameCanvas');
+  const ctx = canvas.getContext('2d');
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+  
+  // O resto do teu código do jogo (como o loop de animação, imagens, etc.) pode vir aqui dentro ou abaixo
+});
+
 window.addEventListener('DOMContentLoaded', () => {
   canvas = document.getElementById('gameCanvas');
   if (canvas) {
@@ -337,7 +354,12 @@ function resizeCanvas() {
   if (!canvas) return;
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
+  
 }
+
+window.addEventListener('resize', resizeCanvas);
+
+resizeCanvas(); 
 
 function setupListeners() {
   document.getElementById('btn-open-shop')?.addEventListener('click', openShopModal);
